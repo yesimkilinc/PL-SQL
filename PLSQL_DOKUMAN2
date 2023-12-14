@@ -1,0 +1,58 @@
+https://livesql.oracle.com
+
+Write your scripts using WITH Clause. Don’t use subqueries like    ….. from (select * from A) …..
+
+1)	Return all employees who earns the highest salary in each department. (Hint: use analytic functions)
+Her departman da en yüksek maaş alanlar tüm çalışanları döndürmeliyim.
+Analitik fonksiyon da sum, max .vs kullanarak sorguyu yazmalıyım.
+
+   SELECT DEPARTMENT_ID, LAST_NAME, SALARY,
+   MAX(SALARY) OVER (PARTITION BY DEPARTMENT_ID) AS DEPARTMENT_MAX
+  FROM HR.EMPLOYEES
+  ORDER BY DEPARTMENT_ID, LAST_NAME, SALARY;
+
+2)	Return number of employees registered for each location.
+Her lokasyon için kayıtlı çalışanların sayısını döndürme
+SELECT DEPARTMENT_ID, count(*) FROM HR.EMPLOYEES group by DEPARTMENT_ID
+
+
+3)	Some departments don’t have any registered employee record. Return 5th letter of those department names. (Don’t try to understand logic here because there is none. It’s just practice.)
+Departman tablosunda olacak departman ama çalışan tablosunda o departmana ait kayıt olmayanları döndürüp departman adlarının 5. Harfini döndürme.
+
+
+SELECT DEPARTMENT_NAME, SUBSTR(DEPARTMENT_NAME, 5,1)
+FROM HR.DEPARTMENTS FULL OUTER JOIN HR.EMPLOYEES
+ON DEPARTMENTS.DEPARTMENT_ID=EMPLOYEES.DEPARTMENT_ID
+WHERE EMPLOYEES.DEPARTMENT_ID IS NULL AND DEPARTMENTS.DEPARTMENT_ID IS NOT NULL--16
+
+
+4)	(Question 3 cont.) Return the string between 1st letter from the end and 3th letter from the end.  . (For example => input = ‘Benefits’, output = ‘sti’).
+
+SELECT LAST_NAME,  SUBSTR(LAST_NAME, -3) AS LAST_NAME1 , REVERSE(SUBSTR(LAST_NAME, -3)) AS LAST_NAME2
+FROM HR.EMPLOYEES
+
+
+5)	(Question 3 cont.) Return reverse of those department names. (For example => input = ‘Benefits’, output = ‘stifeneB’). (HINT: do not use reverse function)
+Bunu nasıl yazacağımı bilemedim. 
+
+
+6)	Write a brief explanation about DevOps. (no longer than 1 page).
+DevOps: Geliştirmeyle operasyonu bir araya getirir.  Şirketlerin bilgi teknolojileri(IT) hizmetleriyle beraber yazılım ürünlerinin de daha hızlı ve daha sık teslim edilebilir (continuous delivery) olmasına yardımcı olmaktadır.
+DevOps'un Avantajları
+Hız, Hızlı Teslim, Güvenilirlik, Geliştirilmiş İş Birliği
+
+
+
+
+
+
+Write each answer to separate file.
+Create a Github account.
+Create a public repository in Github. https://github.com/yesimkilinc/PL-SQL 
+Push your files to this public repository.
+Share repository with me.
+
+
+
+
+
